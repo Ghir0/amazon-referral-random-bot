@@ -8,6 +8,7 @@ if(!$update)
 {
   exit;
 }
+$affiliate = "&tag=miketama-21"; // This is what is in all of my Amazon Affiliate links. To get yours, make an affiliate link, then look for where it has a "?" then copy all the characters from the "?" to the "=" including those two signs.
 // assegno alle seguenti variabili il contenuto ricevuto da Telegram
 $message = isset($update['message']) ? $update['message'] : "";
 $messageId = isset($message['message_id']) ? $message['message_id'] : "";
@@ -17,24 +18,34 @@ $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name']
 $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
+$url = isset($message['url']) ? $message['url'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 $text = strtolower($text);
+
+
 // gestisco la richiesta
-$response = "";
-
-if(isset($message['text']))
+header("Content-Type: application/json");
+$response = '';
+if(strpos($text, "/start") === 0 || $text=="ciao")
 {
-  if($message['text']=="start")
-  {
-	$response = "start";
-  }
-  else
-  {
-    $response = "not start";
-  }
+	$response = "Hi $firstname! Send me an Amazon link";
 }
-
+elseif($url!="")
+{
+    $url2 = htmlspecialchars($url); // This is the original Amazon link that is entered by the user.
+    if (isset($url)) {
+    $pid = substr(strstr($url,"p/"),2,10);
+    $response = "Here's your new Amazon Affiliate link: http://www.amazon.com/gp/product/"+$pid+$affiliate+$pid;
+    //echo "http://www.amazon.com/gp/product/", $pid, $affiliate, $pid; // Uncomment this line to just make a text link.
+}
+else
+{
+	$response = "Send me an Amazon link please!";
+}
+$parameters = array('chat_id' => $chatId, "text" => $response);
+$parameters["method"] = "sendMessage";
+echo json_encode($parameters);
 
 
 
