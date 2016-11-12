@@ -41,7 +41,8 @@ $dominio = $array1[1];
 	$url = $message['text'];
 	$url_to_parse = substr($url, 0, strpos($url, 'http://'));
 	$url_affiliate = set_referral_URL($url_to_parse);
-	$response = $url_affiliate;
+	//$response = $url_affiliate;
+	$response = $url_to_parse;
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
