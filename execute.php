@@ -19,15 +19,34 @@ $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
-// converto tutti i caratteri alfanumerici del messaggio in minuscolo
-$text = strtolower($text);
+// gestisco la richiesta
+$response = "";
+
+if(isset($message['text']))
+{
+  if($message['text']=="/start")
+  {
+	$response = "Ho ricevuto il seguente messaggio di testo: " . $message['text'];
+  }
+  elseif
+  {
+    $response = "Ho ricevuto il seguente messaggio di testo: " . $message['text'];
+  }
+}
+
+
+
+
+
+
+
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
 // imposto l'header della risposta
 header("Content-Type: application/json");
 // la mia risposta è un array JSON composto da chat_id, text, method
 // chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
 // text è il testo della risposta
-$parameters = array('chat_id' => $chatId, "text" => $text);
+$parameters = array('chat_id' => $chatId, "text" => $response);
 // method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 $parameters["method"] = "sendMessage";
 // converto e stampo l'array JSON sulla response
