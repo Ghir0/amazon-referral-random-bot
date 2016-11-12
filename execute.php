@@ -22,6 +22,11 @@ $text = isset($message['text']) ? $message['text'] : "";
 $text = trim($text);
 $text = strtolower($text);
 $array1 = array();
+$path = "";
+$key = "";
+$key_ASIN = "";
+$ASIN = "";
+		
 // gestisco la richiesta
 $response = "";
 if(isset($message['text']))
@@ -37,7 +42,7 @@ $dominio = $array1[1];
 	//$response = "Good! This is an ".$dominio." link!!";
 	$url_to_parse = $message['text'];
 	$url_affiliate = set_referral_URL($url_to_parse);
-	$response = $url_affiliate;
+	$response = $url_affiliate." ASIN:".$ASIN." key_ASIN:".$key_ASIN." path:".$path;
 	
   }
   elseif(strcmp($array1[0],"www") === 0)
@@ -60,7 +65,7 @@ function set_referral_URL($url){
 	$key = array_search('dp', $path);
 	$key_ASIN = $key+1;
 	$ASIN = $parsed_url_array[$key_ASIN];
-	$url_edited = "www.amazon.it/dp/".$ASIN."/".$referral;
+	$url_edited = "www.amazon.it/dp/".$ASIN."?tag=".$referral;
 	return $url_edited;
 }
 	
