@@ -8,7 +8,6 @@ if(!$update)
 {
   exit;
 }
-$affiliate = "&tag=miketama-21"; // This is what is in all of my Amazon Affiliate links. To get yours, make an affiliate link, then look for where it has a "?" then copy all the characters from the "?" to the "=" including those two signs.
 // assegno alle seguenti variabili il contenuto ricevuto da Telegram
 $message = isset($update['message']) ? $update['message'] : "";
 $messageId = isset($message['message_id']) ? $message['message_id'] : "";
@@ -21,35 +20,27 @@ $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 $text = strtolower($text);
-
-
 // gestisco la richiesta
-$response = '';
-if(strpos($text, "/start") === 0 || $text=="ciao")
+$response = "";
+if(isset($message['text']))
 {
-	$response = "Hi $firstname! Send me an Amazon link";
+  if($message['text']=="start")
+  {
+	$response = "start";
+  }
+  else
+  {
+    $response = "not start";
+  }
 }
-elseif(parse_url($text))
-{
-	//parse e modifica URL
-$response = "URL VALIDO"
-}
-else
-{
-	$response = "Send me an Amazon link please!";
-}
-$parameters = array('chat_id' => $chatId, "text" => $response);
-$parameters["method"] = "sendMessage";
-echo json_encode($parameters);
-
-
-return $result
-}
-
-
-
-
+// mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
+// imposto l'header della risposta
 header("Content-Type: application/json");
+// la mia risposta è un array JSON composto da chat_id, text, method
+// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
+// text è il testo della risposta
 $parameters = array('chat_id' => $chatId, "text" => $response);
+// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 $parameters["method"] = "sendMessage";
+// converto e stampo l'array JSON sulla response
 echo json_encode($parameters);
