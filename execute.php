@@ -29,7 +29,7 @@ if(strpos($text, "/start") === 0 || $text=="ciao")
 {
 	$response = "Hi $firstname! Send me an Amazon link";
 }
-elseif((bool)parse_url($text);)
+elseif(parse_url($text))
 {
 	//parse e modifica URL
 $response = "URL VALIDO"
@@ -47,7 +47,6 @@ return $result
 }
 
 
-function isValidURL($url) { return (bool)parse_url($url); }
 
 
 header("Content-Type: application/json");
