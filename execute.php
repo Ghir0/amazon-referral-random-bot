@@ -1,4 +1,4 @@
-<?php
+e<?php
 // recupero il contenuto inviato da Telegram
 $content = file_get_contents("php://input");
 // converto il contenuto da JSON ad array PHP
@@ -31,8 +31,8 @@ if(isset($message['text']))
   }
   else
   {
-    $array1 = explode('.', $text, -1);
-    if($array1[1]=="amazon"){
+    $array1 = explode('.', $text);
+    if(strpos($array1[1], "amazon"){
 	$response = "URL VALIDO";
     }
     else{
