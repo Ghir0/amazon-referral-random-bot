@@ -32,15 +32,13 @@ if(isset($message['text']))
   else
   {
     $array1 = explode(".", $text);
-    if(isset($array1[1])){
-    	if($array1[1]=="amazon"){
-		$response = "URL VALIDO";
-	}
-	else{
-		$response = "URL NON AMAZON";
-	}
+    if($array1[1]=="amazon"){
+	$response = "URL VALIDO";
     }
-    $response = "Send me an Amazon link please! ".$array[0];
+    else{
+	$response = "URL NON AMAZON";
+    }
+    $response = "Send me an Amazon link please! ".$array1[0];
   }
 }
 
