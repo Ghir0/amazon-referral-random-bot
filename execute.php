@@ -9,7 +9,7 @@ if(!$update)
   exit;
 }
 // assegno alle seguenti variabili il contenuto ricevuto da Telegram
-$referral = "miketama-21";
+
 $message = isset($update['message']) ? $update['message'] : "";
 $messageId = isset($message['message_id']) ? $message['message_id'] : "";
 $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
@@ -57,6 +57,7 @@ $dominio = $array1[1];
 * prende un link amazon, estrapola l'ASIN e ricrea un link allo stesso prodotto con il referral 
 */
 function set_referral_URL($url){
+	$referral = "miketama-21";
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
@@ -64,7 +65,7 @@ function set_referral_URL($url){
 	$key_ASIN = $key+1;
 	$ASIN = $parsed_url_array[$key_ASIN];
 	$url_edited = "www.amazon.it/dp/".$ASIN."?tag=".$referral;
-	return $ASIN;
+	return print_r($parsed_url_array);
 }
 	
 header("Content-Type: application/json");
