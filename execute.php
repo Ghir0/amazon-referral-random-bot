@@ -41,7 +41,7 @@ if(isset($message['text']))
     {
 	$response = "URL NON AMAZON";
     }
-    $response = "Send me an Amazon link please! ".$dominio." text: ".$text;
+    $response = $dominio;
   }
 }
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
