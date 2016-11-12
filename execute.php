@@ -34,14 +34,8 @@ $dominio = $url_array[1];
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {
-	if(sizeof($url_array) > 3)
-	{
-		$response = "Good! This is an ".$dominio." link!!";
-	}
-	else
-	{
-		$response = "This is a not valid Amazon link";
-	}
+	$response = "Good! This is an ".$dominio." link!!";
+	
   }
   elseif(strcmp($url_array[0],"www") === 0)
   {
