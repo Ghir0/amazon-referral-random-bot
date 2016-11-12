@@ -23,25 +23,24 @@ $text = strtolower($text);
 $array1 = array();
 // gestisco la richiesta
 $response = "";
+
 if(isset($message['text']))
+$array1 = explode('.', $text);
+$dominio = $array1[1];
 {
   if(strpos($text, "/start") === 0 || $text=="ciao")
   {
 	$response = "Hi $firstname! Send me an Amazon link";
   }
+  elseif(strcmp($dominio,"amazon") === 0)
+  {
+	$response = "URL VALIDO";
+  }
   else
   {
-    $array1 = explode('.', $text);
-    $dominio = $array1[1];
-    if(strcmp($dominio,"amazon") === 0)
-    {
-	$response = "URL VALIDO";
-    }
-    else
-    {
 	$response = "URL NON AMAZON";
-    }
-    $response = $dominio;
+  }
+  //$response = "This is a ".$dominio." link";
   }
 }
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
