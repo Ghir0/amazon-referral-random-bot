@@ -61,7 +61,7 @@ function set_referral_URL($url){
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
 	$key = array_search('dp', $path);
-	$ASIN = $parsed_url_array[$key];
+	$ASIN = $path[$key];
 	$url_edited = "www.amazon.it/dp/".$ASIN."?tag=".$referral;
 	return $ASIN;
 }
