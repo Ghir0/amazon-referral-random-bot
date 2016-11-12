@@ -22,10 +22,11 @@ $text = isset($message['text']) ? $message['text'] : "";
 $text = trim($text);
 $text = strtolower($text);
 $array1 = array();
-$path = "";
+$path = array();
 $key = "";
 $key_ASIN = "";
 $ASIN = "";
+$parsed_url_array = array();
 		
 // gestisco la richiesta
 $response = "";
