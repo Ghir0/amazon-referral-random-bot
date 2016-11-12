@@ -39,7 +39,7 @@ if(isset($message['text']))
 		$response = "URL NON AMAZON";
 	}
     }
-    $response = "Send me an Amazon link please! "+$array[0];
+    $response = "Send me an Amazon link please! ".$array[0];
   }
 }
 
