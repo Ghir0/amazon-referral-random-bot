@@ -24,7 +24,6 @@ $text = strtolower($text);
 
 
 // gestisco la richiesta
-header("Content-Type: application/json");
 $response = '';
 if(strpos($text, "/start") === 0 || $text=="ciao")
 {
@@ -50,14 +49,8 @@ return $result
 
 function isValidURL($url) { return (bool)parse_url($url); }
 
-// mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
-// imposto l'header della risposta
+
 header("Content-Type: application/json");
-// la mia risposta è un array JSON composto da chat_id, text, method
-// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
-// text è il testo della risposta
 $parameters = array('chat_id' => $chatId, "text" => $response);
-// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 $parameters["method"] = "sendMessage";
-// converto e stampo l'array JSON sulla response
 echo json_encode($parameters);
