@@ -19,18 +19,19 @@ $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
+$text = strtolower($text);
 // gestisco la richiesta
 $response = "";
 
 if(isset($message['text']))
 {
-  if($message['text']=="/start")
+  if($message['text']=="start")
   {
-	$response = "Ho ricevuto il seguente messaggio di testo: " . $message['text'];
+	$response = "start";
   }
-  elseif
+  else
   {
-    $response = "Ho ricevuto il seguente messaggio di testo: " . $message['text'];
+    $response = "not start";
   }
 }
 
