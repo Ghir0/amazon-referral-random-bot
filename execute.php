@@ -31,7 +31,7 @@ if(isset($message['text']))
   }
   else
   {
-    $array1 = explode(".", $text);
+    $array1 = explode('.', $text, 3);
     if($array1[1]=="amazon"){
 	$response = "URL VALIDO";
     }
