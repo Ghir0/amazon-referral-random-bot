@@ -31,8 +31,9 @@ if(isset($message['text']))
   }
   else
   {
-    $array1 = explode('.', $text);
-    if(strpos($array1[1], "amazon"){
+    $array1 = explode('.', $text, -1);
+    $dominio = $array1[1];
+    if(strcmp($dominio,"amazon") === 0){
 	$response = "URL VALIDO";
     }
     else{
@@ -41,8 +42,6 @@ if(isset($message['text']))
     $response = "Send me an Amazon link please! ".$array1[0]." ".$array1[1]." ".$array1[2]." text: ".$text;
   }
 }
-
-
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
 // imposto l'header della risposta
 header("Content-Type: application/json");
@@ -54,4 +53,3 @@ $parameters = array('chat_id' => $chatId, "text" => $response);
 $parameters["method"] = "sendMessage";
 // converto e stampo l'array JSON sulla response
 echo json_encode($parameters);
-
