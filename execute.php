@@ -20,13 +20,13 @@ $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 $text = strtolower($text);
-$array1 = array();
+$url_array = array();
 // gestisco la richiesta
 $response = "";
 
 if(isset($message['text']))
-$array1 = explode('.', $text);
-$dominio = $array1[1];
+$url = explode('.', $text);
+$dominio = $url_array[1];
 {
   if(strpos($text, "/start") === 0 || $text=="ciao")
   {
@@ -34,9 +34,16 @@ $dominio = $array1[1];
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {
-	$response = "Good! This is an ".$dominio." link!!";
+	if(sizeof($url_array) > 3)
+	{
+		$response = "Good! This is an ".$dominio." link!!";
+	}
+	else
+	{
+		$response = "This is a not valid Amazon link";
+	}
   }
-  elseif(strcmp($array1[0],"www") === 0)
+  elseif(strcmp($url_array[0],"www") === 0)
   {
 	$response = "Wrong! This is not an Amazon link, retry!";
   }
