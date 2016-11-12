@@ -28,7 +28,7 @@ if(isset($message['text']))
   {
 	$response = "Hi $firstname! Send me an Amazon link";
   }
-  elseif(parse_url($text))
+  elseif((bool)parse_url($text))
   {
     //parse e modifica URL
     $response = "URL VALIDO";
