@@ -43,8 +43,7 @@ $dominio = $array1[1];
 	//$response = "Good! This is an ".$dominio." link!!";
 	$url_to_parse = $message['text'];
 	$url_affiliate = set_referral_URL($url_to_parse);
-	$response = $url_affiliate." ASIN:".$ASIN." key_ASIN:".$key_ASIN." path:".print_r($path)." parsed_url:".print_r($parsed_url_array);
-	
+	$response = $url_affiliate." ASIN:".$ASIN." key_ASIN:".$key_ASIN;
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
