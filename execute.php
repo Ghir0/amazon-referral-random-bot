@@ -23,7 +23,6 @@ $text = trim($text);
 $text = strtolower($text);
 $array1 = array();
 $key = "";
-$key_ASIN = "";
 $ASIN = "";
 		
 // gestisco la richiesta
@@ -62,10 +61,9 @@ function set_referral_URL($url){
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
 	$key = array_search('dp', $path);
-	$key_ASIN = $key+1;
-	$ASIN = $parsed_url_array[$key_ASIN];
+	$ASIN = $parsed_url_array[$key];
 	$url_edited = "www.amazon.it/dp/".$ASIN."?tag=".$referral;
-	return $key;
+	return $ASIN;
 }
 	
 header("Content-Type: application/json");
