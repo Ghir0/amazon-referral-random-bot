@@ -20,6 +20,7 @@ $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 $text = strtolower($text);
+$array1 = array();
 // gestisco la richiesta
 $response = "";
 if(isset($message['text']))
