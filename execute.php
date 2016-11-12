@@ -31,15 +31,17 @@ if(isset($message['text']))
   }
   else
   {
-    $array1 = explode('.', $text, -1);
+    $array1 = explode('.', $text);
     $dominio = $array1[1];
-    if(strcmp($dominio,"amazon") === 0){
+    if(strcmp($dominio,"amazon") === 0)
+    {
 	$response = "URL VALIDO";
     }
-    else{
+    else
+    {
 	$response = "URL NON AMAZON";
     }
-    $response = "Send me an Amazon link please! ".$array1[0]." ".$array1[1]." ".$array1[2]." text: ".$text;
+    $response = "Send me an Amazon link please! ".$array1[0]."".$array1[1]."".$array1[2]." text: ".$text;
   }
 }
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
