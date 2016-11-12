@@ -34,13 +34,11 @@ $dominio = $array1[1];
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {
-	$response = "URL VALIDO";
+	$response = "This is a ".$dominio." link";
   }
   else
   {
 	$response = "URL NON AMAZON";
-  }
-  //$response = "This is a ".$dominio." link";
   }
 }
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
