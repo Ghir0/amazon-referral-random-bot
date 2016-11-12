@@ -24,15 +24,22 @@ $text = strtolower($text);
 $response = "";
 if(isset($message['text']))
 {
-  if($message['text']=="start")
+  if(strpos($text, "/start") === 0 || $text=="ciao")
   {
-	$response = "start";
+	$response = "Hi $firstname! Send me an Amazon link";
+  }
+  elseif(parse_url($text))
+  {
+    //parse e modifica URL
+    $response = "URL VALIDO";
   }
   else
   {
-    $response = "not start";
+    $response = "Send me an Amazon link please!";
   }
 }
+
+
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
 // imposto l'header della risposta
 header("Content-Type: application/json");
