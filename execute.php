@@ -36,9 +36,13 @@ $dominio = $array1[1];
   {
 	$response = "Good! This is an ".$dominio." link!!";
   }
+  elseif(strcmp($array1[0],"www") === 0)
+  {
+	$response = "Wrong! This is not an Amazon link, retry!";
+  }
   else
   {
-	$response = "This is not an Amazon link, retry!";
+	$response = "This doesn't work, send me an Amazon link";
   }
 }
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
