@@ -28,13 +28,17 @@ if(isset($message['text']))
   {
 	$response = "Hi $firstname! Send me an Amazon link";
   }
-  elseif((bool)parse_url($text))
-  {
-    //parse e modifica URL
-    $response = "URL VALIDO";
-  }
   else
   {
+    $array1 = explode(".", $text);
+    if(isset($array1[1])){
+    	if(isset($array1[1])=="amazon"){
+		$response = "URL VALIDO";
+	}
+	else{
+		$response = "URL NON AMAZON";
+	}
+    }
     $response = "Send me an Amazon link please!";
   }
 }
@@ -51,3 +55,4 @@ $parameters = array('chat_id' => $chatId, "text" => $response);
 $parameters["method"] = "sendMessage";
 // converto e stampo l'array JSON sulla response
 echo json_encode($parameters);
+
