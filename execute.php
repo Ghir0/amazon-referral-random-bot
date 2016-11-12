@@ -9,7 +9,6 @@ if(!$update)
   exit;
 }
 // assegno alle seguenti variabili il contenuto ricevuto da Telegram
-
 $message = isset($update['message']) ? $update['message'] : "";
 $messageId = isset($message['message_id']) ? $message['message_id'] : "";
 $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
@@ -20,7 +19,7 @@ $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
-//$text = strtolower($text);
+$text = strtolower($text);
 $array1 = array();
 $key = "";
 $ASIN = "";
@@ -28,11 +27,9 @@ $ASIN = "";
 // gestisco la richiesta
 $response = "";
 if(isset($message['text']))
+$array1 = explode('.', $text);
+$dominio = $array1[1];
 {
-  $array1 = explode('.', $text);
-  $dominio = $array1[1];
-  $text = substr($url, 0, strpos($url, 'https://'));
-	
   if(strpos($text, "/start") === 0 || $text=="ciao")
   {
 	$response = "Hi $firstname! Send me an Amazon link";
@@ -40,11 +37,9 @@ if(isset($message['text']))
   elseif(strcmp($dominio,"amazon") === 0)
   {
 	//$response = "Good! This is an ".$dominio." link!!";
-	$url_to_parse = $text;
-	//$url_to_parse = substr($url, 0, strpos($url, 'http://'));
+	$url_to_parse = $message['text'];
 	$url_affiliate = set_referral_URL($url_to_parse);
 	$response = $url_affiliate;
-	//$response = $url_to_parse;
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
