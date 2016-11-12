@@ -1,4 +1,4 @@
-e<?php
+<?php
 // recupero il contenuto inviato da Telegram
 $content = file_get_contents("php://input");
 // converto il contenuto da JSON ad array PHP
