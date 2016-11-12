@@ -38,7 +38,8 @@ $dominio = $array1[1];
   elseif(strcmp($dominio,"amazon") === 0)
   {
 	//$response = "Good! This is an ".$dominio." link!!";
-	$url_to_parse = $message['text'];
+	$url = $message['text'];
+	$url_to_parse = substr($url, 0, strpos($url, 'http://'));
 	$url_affiliate = set_referral_URL($url_to_parse);
 	$response = $url_affiliate;
   }
