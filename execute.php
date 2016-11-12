@@ -65,7 +65,8 @@ function set_referral_URL($url){
 	$key_ASIN = $key+1;
 	$ASIN = $parsed_url_array[$key_ASIN];
 	$url_edited = "www.amazon.it/dp/".$ASIN."?tag=".$referral;
-	return implode(" ",$parsed_url_array);
+	//return implode(" ",$parsed_url_array);
+	return $ASIN;
 }
 	
 header("Content-Type: application/json");
