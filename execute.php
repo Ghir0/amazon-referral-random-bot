@@ -18,7 +18,6 @@ $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name']
 $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
-$url = isset($message['url']) ? $message['url'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 $text = strtolower($text);
@@ -31,13 +30,10 @@ if(strpos($text, "/start") === 0 || $text=="ciao")
 {
 	$response = "Hi $firstname! Send me an Amazon link";
 }
-elseif($url!="")
+elseif((bool)parse_url($text);)
 {
-    $url2 = htmlspecialchars($url); // This is the original Amazon link that is entered by the user.
-    if (isset($url)) {
-    $pid = substr(strstr($url,"p/"),2,10);
-    $response = "Here's your new Amazon Affiliate link: http://www.amazon.com/gp/product/"+$pid+$affiliate+$pid;
-    //echo "http://www.amazon.com/gp/product/", $pid, $affiliate, $pid; // Uncomment this line to just make a text link.
+	//parse e modifica URL
+$response = "URL VALIDO"
 }
 else
 {
@@ -48,9 +44,11 @@ $parameters["method"] = "sendMessage";
 echo json_encode($parameters);
 
 
+return $result
+}
 
 
-
+function isValidURL($url) { return (bool)parse_url($url); }
 
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
 // imposto l'header della risposta
