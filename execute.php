@@ -9,6 +9,7 @@ if(!$update)
   exit;
 }
 // assegno alle seguenti variabili il contenuto ricevuto da Telegram
+$referral = "miketama-21";
 $message = isset($update['message']) ? $update['message'] : "";
 $messageId = isset($message['message_id']) ? $message['message_id'] : "";
 $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
@@ -33,7 +34,11 @@ $dominio = $array1[1];
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {
-	$response = "Good! This is an ".$dominio." link!!";
+	//$response = "Good! This is an ".$dominio." link!!";
+	$url_to_parse = $message['text'];
+	$url_affiliate = set_referral_URL($url_to_parse);
+	$response = $url_affiliate;
+	
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
@@ -44,14 +49,21 @@ $dominio = $array1[1];
 	$response = "This doesn't work, send me an Amazon link";
   }
 }
-// mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
-// imposto l'header della risposta
+/*
+*
+* prende un link amazon, estrapola l'ASIN e ricrea un link allo stesso prodotto con il referral 
+*/
+function set_referral_URL($url){
+	$url_edited = "";
+	$parsed_url_array = parse_url($url);
+	$path = explode('/', $parsed_url_array['path']);
+	$key = array_search('dp', $path);
+	$ASIN = $parsed_url_array[$key+1];
+	$url_edited = "www.amazon.it/dp/".$ASIN."/".$referral;
+	return $url_edited;
+}
+	
 header("Content-Type: application/json");
-// la mia risposta è un array JSON composto da chat_id, text, method
-// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
-// text è il testo della risposta
 $parameters = array('chat_id' => $chatId, "text" => $response);
-// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 $parameters["method"] = "sendMessage";
-// converto e stampo l'array JSON sulla response
 echo json_encode($parameters);
