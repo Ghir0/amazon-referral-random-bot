@@ -19,7 +19,7 @@ $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
-$text = strtolower($text);
+//$text = strtolower($text);
 $array1 = array();
 $key = "";
 $ASIN = "";
@@ -27,17 +27,19 @@ $ASIN = "";
 // gestisco la richiesta
 $response = "";
 if(isset($message['text']))
-$array1 = explode('.', $text);
-$dominio = $array1[1];
+
 {
-  if(strpos($text, "/start") === 0 || $text=="ciao")
+  $text_clean = clean_for_URL($text);
+  $array1 = explode('.', $text_clean);
+  $dominio = $array1[1];
+  if(strpos($text_clean, "/start") === 0 || $text_clean=="ciao")
   {
 	$response = "Hi $firstname! Send me an Amazon link";
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {
 	//$response = "Good! This is an ".$dominio." link!!";
-	$url_to_parse = $message['text'];
+	$url_to_parse = $text_clean;
 	$url_affiliate = set_referral_URL($url_to_parse);
 	$response = $url_affiliate;
   }
@@ -64,6 +66,11 @@ function set_referral_URL($url){
 	$ASIN = $path[$key+1];
 	$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral;
 	return $url_edited;
+}
+
+function clean_for_URL($string){
+	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
+	return $cleaned_string;
 }
 	
 header("Content-Type: application/json");
