@@ -32,7 +32,7 @@ if(isset($message['text']))
   $text_clean = clean_for_URL($text);
   $array1 = explode('.', $text_clean);
   $dominio = $array1[1];
-  if(strpos($text_clean, "/start") === 0 || $text_clean=="ciao")
+  if(strpos($text, "/start") === 0 )
   {
 	$response = "Hi $firstname! Send me an Amazon link";
   }
@@ -45,11 +45,11 @@ if(isset($message['text']))
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
-	$response = "Wrong! This is not an Amazon link, retry!";
+	//$response = "Wrong! This is not an Amazon link, retry!";
   }
   else
   {
-	$response = "This doesn't work, send me an Amazon link";
+	//$response = "This doesn't work, send me an Amazon link";
   }
 }
 /*
