@@ -34,14 +34,14 @@ if(isset($message['text']))
   $dominio = $array1[1];
   if(strpos($text, "/start") === 0 )
   {
-	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app!";
+	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone!";
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {
 	//$response = "Good! This is an ".$dominio." link!!";
 	$url_to_parse = $text_clean;
 	$url_affiliate = set_referral_URL($url_to_parse);
-	$response = $url_affiliate;
+	$response = "Ecco fatto! Di seguito il link che hai richiesto\n $url_affiliate";
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
