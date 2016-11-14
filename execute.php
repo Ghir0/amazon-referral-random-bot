@@ -41,11 +41,11 @@ if(isset($message['text']))
 	//$response = "Good! This is an ".$dominio." link!!";
 	$url_to_parse = $text_clean;
 	$url_affiliate = set_referral_URL($url_to_parse);
-	$faccinasym = json_decode('"\uD83D\uDE00"');
+	$faccinasym = json_decode('"\uD83D\uDE0A"');
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
-	$response = "Ecco fatto! Di seguito il link che hai richiesto $pollicesym \n$worldsym  $url_affiliate";
+	$response = "Ecco fatto! Di seguito il link per l'aquisto, grazie! $faccinasym \n$worldsym  $url_affiliate";
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
