@@ -41,7 +41,9 @@ if(isset($message['text']))
 	//$response = "Good! This is an ".$dominio." link!!";
 	$url_to_parse = $text_clean;
 	$url_affiliate = set_referral_URL($url_to_parse);
-	$response = "Ecco fatto! Di seguito il link che hai richiesto\n \u{1F60E} \n \u{1F517}:  $url_affiliate";
+	$faccinasym = json_decode('"\uD83D\uDE00"');
+	$linksym =  json_decode('"\uD83D\uDD17"');
+	$response = "Ecco fatto! Di seguito il link che hai richiesto $faccinasym \n$linksym:  $url_affiliate";
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
