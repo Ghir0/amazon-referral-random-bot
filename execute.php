@@ -44,7 +44,8 @@ if(isset($message['text']))
 	$faccinasym = json_decode('"\uD83D\uDE00"');
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
-	$response = "Ecco fatto! Di seguito il link che hai richiesto $pollicesym \n$linksym  $url_affiliate";
+	$worldsym = json_decode('"\uD83C\uDF0F"');
+	$response = "Ecco fatto! Di seguito il link che hai richiesto $pollicesym \n$worldsym  $url_affiliate";
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
