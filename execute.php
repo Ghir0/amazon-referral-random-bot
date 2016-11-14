@@ -74,7 +74,44 @@ function clean_for_URL($string){
 	if($cleaned_string == ""){ explode(' ',strstr($string,'http://'))[0]; }
 	return $cleaned_string;
 }
+/*
+function test_link($url){
+	$url_to_test = clean_for_URL($url); //pulisco url
+	$url_array = parse_url($url); //parse url
+	$url_host = explode('.', $url_array['host']);
+	$url_path = $url_array['path']);
 	
+	if(strcmp($url_host[0],"www"))
+	{ 
+		//è un link
+		if(strcmp($url_host[1],"amazon")
+		{
+			//è un link amazon
+			if(is_null($url_path))
+			{
+				//link alla home
+				$response_link="http://amzn.to/2f8aTvW";
+			}
+			else
+			{
+				//link con path
+				
+				$response_link= set_referral_URL($url_to_test);
+			}
+		}
+		else
+		{
+			//non è un link amazon
+			$response_link="Non è un link amazon";
+		}
+	}
+	else
+	{
+		//non è un link
+		$response_link="Non è un link";
+	}
+	return $response_link;
+}*/
 header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $response);
 $parameters["method"] = "sendMessage";
