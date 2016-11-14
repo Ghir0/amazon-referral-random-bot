@@ -62,7 +62,7 @@ if(isset($message['text']))
 */
 function set_referral_URL($url){
 	$referral = array("miketama-21","s1m0nex27-21","antonio99-21");
-	$random = rand(0,2);
+	$random = mt_rand(0,2);
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
