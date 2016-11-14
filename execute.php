@@ -65,13 +65,13 @@ if(isset($message['text']))
 function set_referral_URL($url, $string){
 	$referral = array("miketama-21","s1m0nex27-21","antonio99-21");
 	$random = mt_rand(0,2);
-	/*if($random == 0){
+	if($random == "0"){
 		$string="Ho scelto il mio Padrone, Mike!"
-	}elseif($random == 1){
+	}elseif($random == "1"){
 		$string="Ho scelto Simone, dai...soldi per il matrimonio!"
-	}elseif($random == 2){
+	}elseif($random == "2"){
 		$string="Ho scelto Camerino, una goccia sul mare...culorotto!"
-	}*/
+	}
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
@@ -85,7 +85,7 @@ function set_referral_URL($url, $string){
 
 function clean_for_URL($string){
 	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
-	if(strcmp($cleaned_string,"false") === 0){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
+	if(strcmp($cleaned_string,"false") == "0"){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
 	return $cleaned_string;
 }
 /*
