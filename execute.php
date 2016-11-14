@@ -47,7 +47,7 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	//$response = "Ecco fatto! Di seguito il link per l'aquisto, grazie! $faccinasym \n$worldsym  $url_affiliate";
-	$response = $stringarisposta."\n$worldsym".$url_affiliate;
+	$response = "$stringarisposta \n$worldsym $url_affiliate";
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
@@ -65,13 +65,13 @@ if(isset($message['text']))
 function set_referral_URL($url, $string){
 	$referral = array("miketama-21","s1m0nex27-21","antonio99-21");
 	$random = mt_rand(0,2);
-	if($random == 0){
+	/*if($random == 0){
 		$string="Ho scelto il mio Padrone, Mike!"
 	}elseif($random == 1){
 		$string="Ho scelto Simone, dai...soldi per il matrimonio!"
 	}elseif($random == 2){
 		$string="Ho scelto Camerino, una goccia sul mare...culorotto!"
-	}
+	}*/
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
