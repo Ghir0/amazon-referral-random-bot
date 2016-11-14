@@ -61,7 +61,8 @@ if(isset($message['text']))
 * prende un link amazon, estrapola l'ASIN e ricrea un link allo stesso prodotto con il referral 
 */
 function set_referral_URL($url){
-	$referral = "REFERRAL-LINK";
+	$referral = array("miketama-21","s1m0nex27-21","antonio99-21");
+	$random = mt_rand(0,2);
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
@@ -69,7 +70,7 @@ function set_referral_URL($url){
 	$seller = "&".$parsed_url_array['query'];
 	if($key==''){$key = array_search('d', $path);}
 	$ASIN = $path[$key+1];
-	$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral.$seller;
+	$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral[$random].$seller;
 	return $url_edited;
 }
 
