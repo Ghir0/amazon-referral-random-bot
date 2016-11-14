@@ -34,7 +34,7 @@ if(isset($message['text']))
   $dominio = $array1[1];
   if(strpos($text, "/start") === 0 )
   {
-	$response = "Hi $firstname! Send me an Amazon link";
+	$response = "Ciao $firstname! Mandami un link Amazon";
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {
