@@ -40,14 +40,13 @@ if(isset($message['text']))
   {
 	//$response = "Good! This is an ".$dominio." link!!";
 	$url_to_parse = $text_clean;
-	$stringarisposta = "";
-	$url_affiliate = set_referral_URL($url_to_parse,$stringarisposta);
+	$url_affiliate = set_referral_URL($url_to_parse);
 	$faccinasym = json_decode('"\uD83D\uDE0A"');
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
-	//$response = "Ecco fatto! Di seguito il link per l'aquisto, grazie! $faccinasym \n$worldsym  $url_affiliate";
-	$response = "$stringarisposta \n$worldsym $url_affiliate";
+	$response = "Ecco fatto! Di seguito il link per l'aquisto! $faccinasym \n$worldsym  $url_affiliate";
+	
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
@@ -62,16 +61,10 @@ if(isset($message['text']))
 *
 * prende un link amazon, estrapola l'ASIN e ricrea un link allo stesso prodotto con il referral 
 */
-function set_referral_URL($url, $string){
+function set_referral_URL($url){
 	$referral = array("miketama-21","s1m0nex27-21","antonio99-21");
 	$random = mt_rand(0,2);
-	if($random == "0"){
-		$string="Ho scelto il mio Padrone, Mike!"
-	}elseif($random == "1"){
-		$string="Ho scelto Simone, dai...soldi per il matrimonio!"
-	}elseif($random == "2"){
-		$string="Ho scelto Camerino, una goccia sul mare...culorotto!"
-	}
+	
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
 	$path = explode('/', $parsed_url_array['path']);
