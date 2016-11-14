@@ -43,8 +43,8 @@ if(isset($message['text']))
 	$url_affiliate = set_referral_URL($url_to_parse);
 	$faccinasym = json_decode('"\uD83D\uDE00"');
 	$linksym =  json_decode('"\uD83D\uDD17"');
-	$winninghandsym= utf8_encode("E29C8C");
-	$response = "Ecco fatto! Di seguito il link che hai richiesto $winninghandsym \n$linksym  $url_affiliate";
+	$pollicesym =  json_decode('"\uD83D\uDC4D"');
+	$response = "Ecco fatto! Di seguito il link che hai richiesto $pollicesym \n$linksym  $url_affiliate";
   }
   elseif(strcmp($array1[0],"www") === 0)
   {
