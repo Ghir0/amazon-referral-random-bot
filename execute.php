@@ -60,8 +60,8 @@ if(isset($message['text']))
 * prende un link amazon, estrapola l'ASIN e ricrea un link allo stesso prodotto con il referral 
 */
 function set_referral_URL($url){
-	$referral = array("miketama-21","s1m0nex27-21","antonio99-21");
-	$random = mt_rand(0,2);
+	$referral = array("miketama-21","s1m0nex27-21","antonio99-21","antcaiazza-21");
+	$random = mt_rand(0,3);
 	
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
