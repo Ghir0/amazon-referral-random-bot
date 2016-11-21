@@ -50,6 +50,9 @@ if(isset($message['text']))
 	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
 	
   }
+   elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
+  {
+	   $response = "Incolla l'URL da convertire dopo il comando /link";
 }
 /*
 *
