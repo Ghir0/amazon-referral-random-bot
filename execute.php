@@ -56,7 +56,7 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
-	$response = "$text_url_array[0],\n$text_url_array[1]\nEcco fatto!$faccinasym \n$obj_desc\n$worldsym  $url_affiliate";
+	$response = "Ecco fatto!$faccinasym \n$obj_desc\n$worldsym  $url_affiliate";
 	
   }
   elseif(strcmp($array1[0],"www") === 0)
@@ -96,7 +96,7 @@ function clean_for_URL($string){
 function parse_text($string){
 	preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $string, $match);
 	$text_parsed_URL = $match[0][0];
-	$arr = explode("http://", $string);
+	$arr = explode("http", $string);
 	$text_parsed_TEXT = $arr[0];
 	$text_parsed = array($text_parsed_TEXT, $text_parsed_URL);
 	return $text_parsed;
