@@ -53,6 +53,7 @@ if(isset($message['text']))
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
   {
 	   $response = "Incolla l'URL da convertire dopo il comando /link";
+   }
 }
 /*
 *
