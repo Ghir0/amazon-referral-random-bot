@@ -19,9 +19,7 @@ $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
-//$text = strtolower($text);
-//$array1 = array();
-		
+
 // gestisco la richiesta
 $response = "";
 if(isset($message['text']))
@@ -29,15 +27,12 @@ if(isset($message['text']))
 {
   //NUOVO PARSER:
   $text_url_array = parse_text($text);
-	
-  //$text_clean = clean_for_URL($text);
-  //$array1 = explode('.', $text_clean);
-  //$dominio = $array1[1];
+
   if(strpos($text, "/start") === 0 )
   {
 	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone!";
   }
-  elseif(strpos($text, "/link") === 0 && strlen($text)>6 /*strcmp($dominio,"amazon") === 0*/)
+  elseif(strpos($text, "/link") === 0 && strlen($text)>6 )
   {	  
 	//new parser:
 	$url_to_parse = $text_url_array[1];
