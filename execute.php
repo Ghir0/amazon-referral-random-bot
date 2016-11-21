@@ -27,6 +27,9 @@ $response = "";
 if(isset($message['text']))
 
 {
+  //NUOVO PARSER:
+  $text_url_array = parse_text($text);
+	
   $text_clean = clean_for_URL($text);
   $array1 = explode('.', $text_clean);
   $dominio = $array1[1];
@@ -37,13 +40,22 @@ if(isset($message['text']))
   elseif(strcmp($dominio,"amazon") === 0)
   {
 	//$response = "Good! This is an ".$dominio." link!!";
-	$url_to_parse = $text_clean;
+	/*$url_to_parse = $text_clean;
 	$url_affiliate = set_referral_URL($url_to_parse);
 	$faccinasym = json_decode('"\uD83D\uDE0A"');
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
-	$response = "Ecco fatto! Di seguito il link per l'aquisto! $faccinasym \n$worldsym  $url_affiliate";
+	$response = "Ecco fatto! Di seguito il link per l'aquisto! $faccinasym \n$worldsym  $url_affiliate";*/
+	  
+	//new parser:
+	$url_to_parse = $text_url_array[1];
+	$url_affiliate = set_referral_URL($url_to_parse);
+	$faccinasym = json_decode('"\uD83D\uDE0A"');
+	$linksym =  json_decode('"\uD83D\uDD17"');
+	$pollicesym =  json_decode('"\uD83D\uDC4D"');
+	$worldsym = json_decode('"\uD83C\uDF0F"');
+	$response = "Ecco fatto!$faccinasym \n$text_url_array[0]\n$worldsym  $url_affiliate";
 	
   }
   elseif(strcmp($array1[0],"www") === 0)
@@ -78,6 +90,15 @@ function clean_for_URL($string){
 	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
 	if(strcmp($cleaned_string,"false") == "0"){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
 	return $cleaned_string;
+}
+//nuovo parser
+function parse_text($string){
+	preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $string, $match);
+	$text_parsed_URL = $match[0][0];
+	$arr = explode("http://", $string);
+	$text_parsed_TEXT = $arr[0];
+	$text_parsed = array($text_parsed_TEXT, $text_parsed_URL);
+	return $text_parsed;
 }
 function get_string_between($string, $start, $end){
 	$string = ' ' . $string;
