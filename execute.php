@@ -37,7 +37,7 @@ if(isset($message['text']))
   {
 	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone!";
   }
-  elseif(strcmp($dominio,"amazon") === 0)
+  elseif(strpos($text, "/link") === 0 /*strcmp($dominio,"amazon") === 0*/)
   {
 	//$response = "Good! This is an ".$dominio." link!!";
 	/*$url_to_parse = $text_clean;
