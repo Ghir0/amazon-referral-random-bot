@@ -20,7 +20,7 @@ $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 //$text = strtolower($text);
-$array1 = array();
+//$array1 = array();
 		
 // gestisco la richiesta
 $response = "";
@@ -30,24 +30,15 @@ if(isset($message['text']))
   //NUOVO PARSER:
   $text_url_array = parse_text($text);
 	
-  $text_clean = clean_for_URL($text);
-  $array1 = explode('.', $text_clean);
-  $dominio = $array1[1];
+  //$text_clean = clean_for_URL($text);
+  //$array1 = explode('.', $text_clean);
+  //$dominio = $array1[1];
   if(strpos($text, "/start") === 0 )
   {
 	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone!";
   }
-  elseif(strpos($text, "/link") === 0 /*strcmp($dominio,"amazon") === 0*/)
-  {
-	//$response = "Good! This is an ".$dominio." link!!";
-	/*$url_to_parse = $text_clean;
-	$url_affiliate = set_referral_URL($url_to_parse);
-	$faccinasym = json_decode('"\uD83D\uDE0A"');
-	$linksym =  json_decode('"\uD83D\uDD17"');
-	$pollicesym =  json_decode('"\uD83D\uDC4D"');
-	$worldsym = json_decode('"\uD83C\uDF0F"');
-	$response = "Ecco fatto! Di seguito il link per l'aquisto! $faccinasym \n$worldsym  $url_affiliate";*/
-	  
+  elseif(strpos($text, "/link") === 0 && strlen($text)>6 /*strcmp($dominio,"amazon") === 0*/)
+  {	  
 	//new parser:
 	$url_to_parse = $text_url_array[1];
 	$url_affiliate = set_referral_URL($url_to_parse);
@@ -58,14 +49,6 @@ if(isset($message['text']))
 	$obj_desc = $text_url_array[0];
 	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
 	
-  }
-  elseif(strcmp($array1[0],"www") === 0)
-  {
-	//$response = "Wrong! This is not an Amazon link, retry!";
-  }
-  else
-  {
-	//$response = "This doesn't work, send me an Amazon link";
   }
 }
 /*
@@ -87,11 +70,6 @@ function set_referral_URL($url){
 	return $url_edited;
 }
 
-function clean_for_URL($string){
-	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
-	if(strcmp($cleaned_string,"false") == "0"){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
-	return $cleaned_string;
-}
 //nuovo parser
 function parse_text($string){
 	$string2 = str_replace("/link", "", $string);
@@ -101,14 +79,6 @@ function parse_text($string){
 	$text_parsed_TEXT = $arr[0];
 	$text_parsed = array($text_parsed_TEXT, $text_parsed_URL);
 	return $text_parsed;
-}
-function get_string_between($string, $start, $end){
-	$string = ' ' . $string;
-	$ini = strpos($string, $start);
-	if ($ini == 0) return '';
-	$ini += strlen($start);
-	$len = strpos($string, $end, $ini) - $ini;
-	return substr($string, $ini, $len);
 }
  
 function extract_unit($string, $start, $end){
@@ -120,6 +90,22 @@ function extract_unit($string, $start, $end){
 	$unit = trim($str_three); // remove whitespaces
 	return $unit;
 }
+
+/*function get_string_between($string, $start, $end){
+	$string = ' ' . $string;
+	$ini = strpos($string, $start);
+	if ($ini == 0) return '';
+	$ini += strlen($start);
+	$len = strpos($string, $end, $ini) - $ini;
+	return substr($string, $ini, $len);
+}
+
+function clean_for_URL($string){
+	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
+	if(strcmp($cleaned_string,"false") == "0"){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
+	return $cleaned_string;
+}
+*/
 header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $response);
 $parameters["method"] = "sendMessage";
