@@ -94,9 +94,10 @@ function clean_for_URL($string){
 }
 //nuovo parser
 function parse_text($string){
-	preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $string, $match);
+	$string2 = str_replace("/link", "", $string);
+	preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $string2, $match);
 	$text_parsed_URL = $match[0][0];
-	$arr = explode("http", $string);
+	$arr = explode("http", $string2);
 	$text_parsed_TEXT = $arr[0];
 	$text_parsed = array($text_parsed_TEXT, $text_parsed_URL);
 	return $text_parsed;
