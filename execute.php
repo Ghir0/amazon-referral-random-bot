@@ -95,8 +95,7 @@ function set_referral_URL($url){
 	return $url_edited;
 }
 function set_mike_referral_URL($url){
-	$referral = array("miketama-21");
-	$random = 0;
+	$referral_mike = "miketama-21";
 	
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
@@ -105,12 +104,11 @@ function set_mike_referral_URL($url){
 	
 	$parsed = extract_unit($fullstring, 'm=', '&');
 	$seller = "&".$seller;
-	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral[$random].$seller;
+	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral_mike.$seller;
 	return $url_edited;
 }
 function set_dc_referral_URL($url){
-	$referral = array("lerecedidieg-21");
-	$random = 0;
+	$referral_dc = "lerecedidieg-21";
 	
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
@@ -119,7 +117,7 @@ function set_dc_referral_URL($url){
 	
 	$parsed = extract_unit($fullstring, 'm=', '&');
 	$seller = "&".$seller;
-	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral[$random].$seller;
+	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral_dc.$seller;
 	return $url_edited;
 }
 
