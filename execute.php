@@ -99,9 +99,10 @@ function set_mike_referral_URL($url){
 //nuovo parser
 function parse_text($string){
 	$string2 = str_replace("/link", "", $string);
-	preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $string2, $match);
+	$string3 = str_replace("/mike", "", $string2);
+	preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $string3, $match);
 	$text_parsed_URL = $match[0][0];
-	$arr = explode("http", $string2);
+	$arr = explode("http", $string3);
 	$text_parsed_TEXT = $arr[0];
 	$text_parsed = array($text_parsed_TEXT, $text_parsed_URL);
 	return $text_parsed;
