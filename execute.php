@@ -83,7 +83,7 @@ function set_referral_URL($url){
 }
 function set_mike_referral_URL($url){
 	$referral = array("miketama-21");
-	$random = mt_rand(0);
+	$random = 0;
 	
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
