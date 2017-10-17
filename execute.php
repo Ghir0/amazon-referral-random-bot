@@ -45,6 +45,19 @@ if(isset($message['text']))
 	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
 	
   }
+  elseif(strpos($text, "/mike") === 0 && strlen($text)>6 )
+  {	  
+	//new parser:
+	$url_to_parse = $text_url_array[1];
+	$url_affiliate = set_mike_referral_URL($url_to_parse);
+	$faccinasym = json_decode('"\uD83D\uDE0A"');
+	$linksym =  json_decode('"\uD83D\uDD17"');
+	$pollicesym =  json_decode('"\uD83D\uDC4D"');
+	$worldsym = json_decode('"\uD83C\uDF0F"');
+	$obj_desc = $text_url_array[0];
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	
+  }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
   {
 	   $response = "Incolla l'URL da convertire dopo il comando /link";
@@ -57,6 +70,20 @@ if(isset($message['text']))
 function set_referral_URL($url){
 	$referral = array("miketama-21","s1m0nex27-21","antonio99-21","antcaiazza-21");
 	$random = mt_rand(0,3);
+	
+	$url_edited = "";
+	$parsed_url_array = parse_url($url);
+	
+	$seller = strstr($parsed_url_array['query'], 'm=');
+	
+	$parsed = extract_unit($fullstring, 'm=', '&');
+	$seller = "&".$seller;
+	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral[$random].$seller;
+	return $url_edited;
+}
+function set_mike_referral_URL($url){
+	$referral = array("miketama-21");
+	$random = mt_rand(0);
 	
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
