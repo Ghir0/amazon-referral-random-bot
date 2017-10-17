@@ -30,7 +30,7 @@ if(isset($message['text']))
 
   if(strpos($text, "/start") === 0 )
   {
-	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone!";
+	$response = "Ciao $firstname! \nMandami un link Amazon preceduto da /link! \nTi rispondero' con un link affiliate!";
   }
   elseif(strpos($text, "/link") === 0 && strlen($text)>6 )
   {	  
