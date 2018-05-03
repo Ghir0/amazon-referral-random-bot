@@ -20,6 +20,7 @@ $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 
+$proprietario = "";
 // gestisco la richiesta
 $response = "";
 if(isset($message['text']))
@@ -43,7 +44,7 @@ if(isset($message['text']))
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
 	$short = make_bitly_url($url_affiliate,'ghir0','json');
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $short";
+	$response = "Ecco il link di $proprietario: $obj_desc\n$worldsym  $short";
 	
   }
   elseif(strpos($text, "/mike") === 0 && strlen($text)>6 )
@@ -57,7 +58,7 @@ if(isset($message['text']))
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
 	$short = make_bitly_url($url_affiliate,'ghir0','json');
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $short";
+	$response = "Ecco il link di Mike: $obj_desc\n$worldsym  $short";
 	
   }
   elseif(strpos($text, "/dc") === 0 && strlen($text)>6 )
@@ -71,7 +72,7 @@ if(isset($message['text']))
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
 	$short = make_bitly_url($url_affiliate,'ghir0','json');
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $short";
+	$response = "Ecco il link di Diego: $obj_desc\n$worldsym  $short";
 	
   }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
@@ -86,7 +87,7 @@ if(isset($message['text']))
 function set_referral_URL($url){
 	$referral = array("miketama-21","s1m0nex27-21","antonio99-21","antcaiazza-21");
 	$random = mt_rand(0,3);
-	
+	$proprietario = $referral[$random];
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
 	
