@@ -42,7 +42,8 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$short = make_bitly_url($url_affiliate,'ghir0','json');
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $short";
 	
   }
   elseif(strpos($text, "/mike") === 0 && strlen($text)>6 )
@@ -55,7 +56,8 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$short = make_bitly_url($url_affiliate,'ghir0','json');
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $short";
 	
   }
   elseif(strpos($text, "/dc") === 0 && strlen($text)>6 )
@@ -68,7 +70,8 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$short = make_bitly_url($url_affiliate,'ghir0','json');
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $short";
 	
   }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
@@ -142,6 +145,27 @@ function extract_unit($string, $start, $end){
 	$str_three = substr($str_two, 0, $second_pos);
 	$unit = trim($str_three); // remove whitespaces
 	return $unit;
+}
+function make_bitly_url($url,$login,$format = 'xml',$version = '2.0.1')
+{
+	//create the URL
+	$bitly = 'http://api.bit.ly/shorten?version='.$version.'&longUrl='.urlencode($url).'&login='.$login.'&apiKey=R_c7d78316d223d5a1d7827d58d80e76be'.'&format='.$format;
+	
+	//get the url
+	//could also use cURL here
+	$response = file_get_contents($bitly);
+	
+	//parse depending on desired format
+	if(strtolower($format) == 'json')
+	{
+		$json = @json_decode($response,true);
+		return $json['results'][$url]['shortUrl'];
+	}
+	else //xml
+	{
+		$xml = simplexml_load_string($response);
+		return 'http://bit.ly/'.$xml->results->nodeKeyVal->hash;
+	}
 }
 
 /*function get_string_between($string, $start, $end){
