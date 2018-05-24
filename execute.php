@@ -121,7 +121,7 @@ function set_dc_referral_URL($url){
 	
 	$parsed = extract_unit($fullstring, 'm=', '&');
 	$seller = "&".$seller;
-	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral_dc.$seller."&keywords=I%20Consigli%20di%20Diegocampy.it";
+	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral_dc.$seller."keywords=I%20Consigli%20di%20Diegocampy.it";
 	return $url_edited;
 }
 
